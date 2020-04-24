@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  background-color: purple;
+  flex-direction: column;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.paths {
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.one {
+
+  padding: 20px;
+}
+.two {
+padding: 20px
+}
+h2 {
+  flex: 1;
+  padding:20px;
+}
+h1 {
+  padding: 20px;
+}
