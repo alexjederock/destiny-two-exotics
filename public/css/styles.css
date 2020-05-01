@@ -1,0 +1,32 @@
+body {
+
+}
+
+#request-flex {
+  display: flex;
+
+}
+
+#side-bar {
+  display: inline-flex;
+  flex-flow: column;
+  flex: 3;
+  background-color: red;
+}
+
+.request {
+
+}
+
+#data {
+  flex: 7;
+  background-color: blue;
+}
+
+.inactive {
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}

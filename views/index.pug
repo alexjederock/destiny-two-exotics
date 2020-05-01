@@ -1,0 +1,22 @@
+html
+  head
+    title Destiny 2 Hunter API
+    link(rel='stylesheet' href='/css/styles.css')
+  body
+    div(id='request-flex')
+      div(id='side-bar')
+        button(id='request') GET /hunters
+        button(id='request') GET /hunters/{tag}
+        button(id='request') GET /hunters/{subclass}
+        button(id='request') POST /hunters
+        button(id='request') DELETE /hunters/{tag}
+        button(id='request') PATCH /hunters/{tag}
+        button(id='request') GET /exotics
+        button(id='request') GET /exotics/{slug}
+        button(id='request') GET /exotics/{type}
+        button(id='request') POST /exotics
+        button(id='request') DELETE /exotics/{slug}
+        button(id='request') PATCH /exotics/{perk}
+      div(id='data')
+
+
