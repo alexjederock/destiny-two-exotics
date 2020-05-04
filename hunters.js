@@ -8,8 +8,14 @@ const hunters = {
       grenades: 'Tripmine Grenade',
       tree: 'Way of the Sharpshooter'
       exotic: 'Wormhusk Crown'
-    }
-  ]
+    },
+    {
+      tag: 'zettlechips',
+      subclass: 'Arcstrider',
+      grenades: 'Skipbolt',
+      tree: 'Way of the Wind',
+      exotic: 'Young Ahamkaras Spine'
+    } ],
 
   class: [ {
     subclass: 'Arcstrider',

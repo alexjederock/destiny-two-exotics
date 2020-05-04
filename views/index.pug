@@ -2,21 +2,24 @@ html
   head
     title Destiny 2 Hunter API
     link(rel='stylesheet' href='/css/styles.css')
+    script(src='/javascript/scripts.js')
   body
     div(id='request-flex')
       div(id='side-bar')
-        button(id='request') GET /hunters
-        button(id='request') GET /hunters/{tag}
-        button(id='request') GET /hunters/{subclass}
-        button(id='request') POST /hunters
-        button(id='request') DELETE /hunters/{tag}
-        button(id='request') PATCH /hunters/{tag}
-        button(id='request') GET /exotics
-        button(id='request') GET /exotics/{slug}
-        button(id='request') GET /exotics/{type}
-        button(id='request') POST /exotics
-        button(id='request') DELETE /exotics/{slug}
-        button(id='request') PATCH /exotics/{perk}
+       h1(id='side-bar-title') Requests
+       button(class='request' value='1') GET /hunters
+        button(class='request' value='2') GET /hunters/{tag}
+        button(class='request' value='3') GET /hunters/{subclass}
+        button(class='request' value='4') POST /hunters
+        button(class='request' value='5') DELETE /hunters/{tag}
+        button(class='request' value='6') PATCH /hunters/{tag}
+        button(class='request' value='7') GET /exotics
+        button(class='request' value='8') GET /exotics/{slug}
+        button(class='request' value='9') GET /exotics/{type}
+        button(class='request' value='10') POST /exotics
+        button(class='request' value='11') DELETE /exotics/{slug}
+        button(class='request' value='12') PATCH /exotics/{slug}
       div(id='data')
+        include partials/requestData.pug
 
 
