@@ -71,7 +71,7 @@ describe('Controllers - Hunters', () => {
 
       await getAllHunters({}, response)
 
-      expect(stubbedFindAll).to.have.been.calledWith({ attributes: ['tag', 'subclass', 'grenade', 'tree', 'exotic'] })
+      expect(stubbedFindAll).to.have.callCount(1)
       expect(stubbedSend).to.have.been.calledWith(hunterList)
     })
 
@@ -80,7 +80,7 @@ describe('Controllers - Hunters', () => {
 
       await getAllHunters({}, response)
 
-      expect(stubbedFindAll).to.have.been.calledWith({ attributes: ['tag', 'subclass', 'grenade', 'tree', 'exotic'] })
+      expect(stubbedFindAll).to.have.callCount(1)
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to get Hunters list, Please try again.')
     })

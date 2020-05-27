@@ -75,7 +75,7 @@ describe('Controllers - Exotics', () => {
       expect(stubbedSend).to.have.been.calledWith(exoticList)
     })
 
-    it('returns a 500 status when an error occurs retrieving the teams', async () => {
+    it('returns a 500 status when an error occurs retrieving the exotics', async () => {
       stubbedFindAll.throws('ERROR!')
 
       await getAllExotics({}, response)

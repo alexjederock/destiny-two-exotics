@@ -6,7 +6,7 @@ const getAllExotics = async (request, response) => {
     const exotics = await models.Exotics.findAll()
 
     return exotics
-      ? response.send(exotics)
+      ? response.send(exoticList)
       : response.sendStatus(404)
   } catch (error) {
     return response.status(500).send('Unable to get exotics list, Please try again.')
