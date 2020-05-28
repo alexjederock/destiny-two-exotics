@@ -44,7 +44,7 @@ div(class='request-data hidden' id='request-data-4')
     div(class='value') Content-Type: application/json
   div(class='section')
     div(class='label') Body:
-    div(class='value')  {"tag": "zettlechips", "subclass": "Arcstrider", "grenades": "Skipbolt", "tree": "Way of the Wind", "exotic": "Young Ahamkaras Spine"}
+    div(class='value')  {"tag": "zettlechips", "subclass": "Arcstrider", "grenades": "Skipbolt", "tree": "Way of the Wind", "exoticName": "Young Ahamkaras Spine"}
   div(class='section')
     div(class='label') Description:
     div(class='value') Creates a new hunter from the data provided in the body.
@@ -72,7 +72,7 @@ div(class='request-data hidden' id='request-data-6')
     div(class='value') Content-Type: application/json
   div(class='section')
     div(class='label') Body:
-    div(class='value') {"subclass": "Gunslinger", "grenades" : "Tripmine Grenade", "tree": "Way of the Sharpshooter", "exotic": "Wormhusk Crown"}
+    div(class='value') {"subclass": "Gunslinger", "grenades" : "Tripmine Grenade", "tree": "Way of the Sharpshooter", "exoticName": "Wormhusk Crown"}
   div(class='section')
     div(class='label') Description:
     div(class='value') Updates the data for the hunter with the tag provided in the route.
@@ -151,7 +151,8 @@ div(class='request-data hidden' id='request-data-12')
     div(class='value') Content-Type: text/plain
   div(class='section')
     div(class='label') Body:
-    div(class='value') NEW PERK
+    div(class='value')  { “perk”: “NEW PERK” }
+
   div(class='section')
     div(class='label') Description:
     div(class='value') Updates the perk for the exotic with the name provided in the route.

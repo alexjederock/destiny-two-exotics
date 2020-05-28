@@ -12,6 +12,7 @@ const {
   afterEach, before, beforeEach, after, describe, it
 } = require('mocha')
 const { singleHunter, hunterList } = require('../mocks/hunters')
+const { singleExotic } = require('../mocks/exotics')
 
 
 chai.use(sinonChai)
@@ -22,6 +23,7 @@ describe('Controllers - Hunters', () => {
   let sandbox
   let stubbedCreate
   let stubbedFindOne
+  let stubbedFindOneExotic
   let stubbedFindAll
   let stubbedUpdate
   let stubbedDestroy
@@ -36,6 +38,7 @@ describe('Controllers - Hunters', () => {
 
     stubbedFindAll = sandbox.stub(models.Hunters, 'findAll')
     stubbedFindOne = sandbox.stub(models.Hunters, 'findOne')
+    stubbedFindOneExotic = sandbox.stub(models.Exotics, 'findOne')
     stubbedCreate = sandbox.stub(models.Hunters, 'create')
     stubbedUpdate = sandbox.stub(models.Hunters, 'update')
     stubbedDestroy = sandbox.stub(models.Hunters, 'destroy')
@@ -75,7 +78,7 @@ describe('Controllers - Hunters', () => {
       expect(stubbedSend).to.have.been.calledWith(hunterList)
     })
 
-    it('returns a 500 status when an error occurs retrieving the teams', async () => {
+    it('returns a 500 status when an error occurs retrieving the hunters', async () => {
       stubbedFindAll.throws('ERROR!')
 
       await getAllHunters({}, response)
@@ -112,7 +115,7 @@ describe('Controllers - Hunters', () => {
 
       expect(stubbedFindOne).to.have.been.calledWith({
         where: {
-          tag: { [models.Op.like]: '%hunterdude%' }
+          tag: { [models.Op.like]: '%fuzzball%' }
         },
         include: [{ model: models.Exotics }]
       })
@@ -128,7 +131,7 @@ describe('Controllers - Hunters', () => {
 
       expect(stubbedFindOne).to.have.been.calledWith({
         where: {
-          tag: { [models.Op.like]: '%hunterdude%' }
+          tag: { [models.Op.like]: '%taco-party%' }
         },
         include: [{ model: models.Exotics }]
       })
@@ -183,17 +186,22 @@ describe('Controllers - Hunters', () => {
     it('accepts new hunter details and saves them as a new hunter in the database, returning the saved record with a 201 status', async () => {
       const request = { body: singleHunter }
 
-      stubbedCreate.returns(singleHunter)
+      stubbedFindOneExotic.returns(singleExotic)
 
       await saveNewHunter(request, response)
 
-      expect(stubbedCreate).to.have.been.calledWith(singleHunter)
+      expect(stubbedFindOneExotic).to.have.been.calledWith({
+        where: { name: singleHunter.exoticName }
+      })
+      expect(stubbedCreate).to.have.been.calledWith({
+        tag: singleHunter.tag, subclass: singleHunter.subclass, grenades: singleHunter.grenades, tree: singleHunter.tree, exoticName: singleExotic.name
+      })
       expect(stubbedStatus).to.have.been.calledWith(201)
       expect(stubbedStatusDotSend).to.have.been.calledWith(singleHunter)
     })
 
     it('returns a 400 status when not all required fields are provided (missing location)', async () => {
-      const request = { body: singleHunter }
+      const request = { body: {} }
 
       await saveNewHunter(request, response)
 
@@ -204,11 +212,14 @@ describe('Controllers - Hunters', () => {
     it('returns a 500 status when an error occurs saving the new hunter', async () => {
       const request = { body: singleHunter }
 
-      stubbedCreate.throws('ERROR!')
+      stubbedFindOneExotic.throws('ERROR!')
 
       await saveNewHunter(request, response)
 
-      expect(stubbedCreate).to.have.been.calledWith(singleHunter)
+      expect(stubbedFindOneExotic).to.have.been.calledWith({
+        where: { name: singleHunter.exoticName }
+      })
+      expect(stubbedCreate).to.have.callCount(0)
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to save hunter, please try again')
     })
@@ -217,34 +228,38 @@ describe('Controllers - Hunters', () => {
 
   describe('patchHunter', () => {
     it('accepts new hunter details and updates a current hunter in the database, returning the saved record with a 204 status', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: singleHunter.tag }, body: singleHunter }
 
-      stubbedUpdate.returns(singleHunter)
+      stubbedFindOne.returns(singleHunter)
 
       await patchHunter(request, response)
 
-      expect(stubbedUpdate).to.have.been.calledWith(singleHunter)
-      expect(stubbedStatus).to.have.been.calledWith(204)
-      expect(stubbedStatusDotSend).to.have.been.calledWith(singleHunter)
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { tag: singleHunter.tag } })
+      expect(stubbedUpdate).to.have.been.calledWith({ subclass: singleHunter.subclass, grenades: singleHunter.grenades, tree: singleHunter.tree }, { where: { tag: singleHunter.tag } })
+      expect(stubbedSendStatus).to.have.been.calledWith(204)
     })
 
     it('returns a 404 status when hunter is not found', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: singleHunter.tag }, body: singleHunter }
+
+      stubbedFindOne.returns(null)
 
       await patchHunter(request, response)
 
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { tag: singleHunter.tag } })
       expect(stubbedUpdate).to.have.callCount(0)
       expect(stubbedStatus).to.have.been.calledWith(404)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to find Hunter with that tag.')
     })
 
     it('returns a 500 status when an error occurs saving the new hunter data', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: singleHunter.tag }, body: singleHunter }
 
-      stubbedUpdate.throws('ERROR!')
+      stubbedFindOne.throws('ERROR!')
 
       await patchHunter(request, response)
 
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { tag: singleHunter.tag } })
       expect(stubbedUpdate).to.have.callCount(0)
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to update hunter, please try again later.')
@@ -253,34 +268,37 @@ describe('Controllers - Hunters', () => {
 
   describe('deleteHunter', () => {
     it('removes a current hunter from the database, and returns a 204 status with a message', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: singleHunter.tag } }
 
-      stubbedDestroy.returns(singleHunter)
+      stubbedDestroy.returns(1)
 
       await deleteHunter(request, response)
 
-      expect(stubbedDestroy).to.have.been.calledWith(singleHunter)
+      expect(stubbedDestroy).to.have.been.calledWith({ where: { tag: singleHunter.tag } })
       expect(stubbedStatus).to.have.been.calledWith(204)
-      expect(stubbedStatusDotSend).to.have.been.calledWith(singleHunter)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Full on RTL, returned to Light.')
     })
 
     it('returns a 404 status when a hunter is not found', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: '' } }
+
+      stubbedDestroy.returns(0)
 
       await deleteHunter(request, response)
 
-      expect(stubbedDestroy).to.have.callCount(0)
-      expect(stubbedSendStatus).to.have.been.calledWith(404)
+      expect(stubbedDestroy).to.have.been.calledWith({ where: { tag: '' } })
+      expect(stubbedStatus).to.have.been.calledWith(404)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to find Hunter with that tag.')
     })
 
     it('returns a 500 status when an error occurs deleting the hunter', async () => {
-      const request = { body: singleHunter }
+      const request = { params: { tag: singleHunter.tag } }
 
       stubbedDestroy.throws('ERROR!')
 
       await deleteHunter(request, response)
 
-      expect(stubbedDestroy).to.have.been.calledWith(singleHunter)
+      expect(stubbedDestroy).to.have.been.calledWith({ where: { tag: singleHunter.tag } })
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to delete hunter, please try again later.')
     })

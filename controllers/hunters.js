@@ -1,4 +1,3 @@
-
 const models = require('../models')
 
 const getAllHunters = async (request, response) => {
@@ -51,17 +50,17 @@ const getHuntersBySubclass = async (request, response) => {
 const saveNewHunter = async (request, response) => {
   try {
     const {
-      tag, subclass, grenades, tree, exotic
+      tag, subclass, grenades, tree, exoticName
     } = request.body
 
-    if (!tag || !subclass || !grenades || !tree || !exotic) {
+    if (!tag || !subclass || !grenades || !tree || !exoticName) {
       return response.sendStatus(400)
     }
     const exoticArmour = await models.Exotics.findOne({
-      where: { name: exotic }
+      where: { name: exoticName }
     })
 
-    if (!exotic) {
+    if (!exoticArmour) {
       return response.status(400).send('No exotic by that name exists.')
     }
     await models.Hunters.create({
@@ -69,7 +68,7 @@ const saveNewHunter = async (request, response) => {
     })
 
     return response.status(201).send({
-      tag, subclass, grenades, tree, exotic: exoticArmour
+      tag, subclass, grenades, tree, exoticName
     })
   } catch (error) {
     return response.status(500).send('Unable to save hunter, please try again')
@@ -79,6 +78,7 @@ const saveNewHunter = async (request, response) => {
 const patchHunter = async (request, response) => {
   try {
     const { tag } = request.params
+    const { subclass, grenades, tree } = request.body
 
     const hunter = await models.Hunters.findOne({
       where: { tag }
@@ -87,7 +87,7 @@ const patchHunter = async (request, response) => {
     if (!hunter) return response.status(404).send('Unable to find Hunter with that tag.')
 
     await models.Hunters.update({
-      perk: request.body
+      subclass, grenades, tree
     },
       { where: { tag } })
 
@@ -95,7 +95,6 @@ const patchHunter = async (request, response) => {
   } catch (error) {
     return response.status(500).send('Unable to update hunter, please try again later.')
   }
-
 }
 
 const deleteHunter = async (request, response) => {

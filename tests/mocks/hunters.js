@@ -4,7 +4,7 @@ const singleHunter =
   subclass: 'Gunslinger',
   grenades: 'Tripmine Grenade',
   tree: 'Way of the Sharpshooter',
-  exotic: 'Wormhusk Crown'
+  exoticName: 'Wormhusk-Crown'
 }
 
 const hunterList = [
@@ -13,8 +13,8 @@ const hunterList = [
     subclass: 'Gunslinger',
     grenades: 'Tripmine Grenade',
     tree: 'Way of the Sharpshooter',
-    exotic: 'Wormhusk Crown'
+    exoticName: 'Wormhusk-Crown'
   },
 ]
 
-module.export = { singleHunter, hunterList }
+module.exports = { singleHunter, hunterList }

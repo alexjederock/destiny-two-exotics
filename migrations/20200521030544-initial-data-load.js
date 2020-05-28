@@ -44,36 +44,41 @@ module.exports = {
       grenades: 'Tripmine Grenade',
       tree: 'Way of the Sharpshooter',
       exoticName: 'Wormhusk-Crown',
-    }, {
+    },
+    {
       tag: 'ilurvdestiny',
       subclass: 'Arcstrider',
       grenades: 'Flux Grenade',
       tree: 'Way of the Current',
-      exoticName: 'Young-Ahamkaras-Spine',
-    }, {
+      exoticName: 'Stomp-EE5',
+    },
+    {
       tag: 'bobsaget',
       subclass: 'Gunslinger',
       grenades: 'Incendiary Grenade',
       tree: 'Way of a Thousand Cuts',
-      exoticName: 'Shards-of-Galanor',
-    }, {
+      exoticName: 'The-Sixth-Coyote',
+    },
+    {
       tag: 'jonikbo',
       subclass: 'Nightstalker',
       grenades: 'Vortex Grenade',
       tree: 'Way of the Wraith',
       exoticName: 'Ophidia-Spathe',
-    }, {
+    },
+    {
       tag: 'zettlechips',
       subclass: 'Arcstrider',
       grenades: 'Skipbolt',
       tree: 'Way of the Wind',
-      exotic: 'Young Ahamkaras Spine'
-    }, {
+      exoticName: 'Lucky-Pants'
+    },
+    {
       tag: 'bungterzzz',
       subclass: 'Gunslinger',
       grenades: 'Swarm Grenade',
       tree: 'Way of the Outlaw',
-      exoticName: 'Celestial-Nighthawk',
+      exoticName: 'Gwisin-Vest',
     }
     ])
   },

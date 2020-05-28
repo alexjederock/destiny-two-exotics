@@ -1,4 +1,3 @@
-
 const models = require('../models')
 
 const getAllExotics = async (request, response) => {
@@ -6,7 +5,7 @@ const getAllExotics = async (request, response) => {
     const exotics = await models.Exotics.findAll()
 
     return exotics
-      ? response.send(exoticList)
+      ? response.send(exotics)
       : response.sendStatus(404)
   } catch (error) {
     return response.status(500).send('Unable to get exotics list, Please try again.')
@@ -17,11 +16,11 @@ const getExoticByName = async (request, response) => {
   try {
     const { name } = request.params
 
-    const exotic = await models.exotics.findOne({
+    const exotic = await models.Exotics.findOne({
+      include: [{ model: models.Hunters }],
       where: {
         name: { [models.Op.like]: `%${name}%` }
-      },
-      include: [{ model: models.exotics }]
+      }
     })
 
     return exotic
@@ -36,7 +35,7 @@ const getExoticsByType = async (request, response) => {
   try {
     const { type } = request.params
 
-    const exotics = await models.exotics.findAll({
+    const exotics = await models.Exotics.findAll({
       where: { type }
     })
 
@@ -70,23 +69,20 @@ const saveNewExotic = async (request, response) => {
 const patchExotic = async (request, response) => {
   try {
     const { name } = request.params
+    const { perk } = request.body
 
-    const exotic = await models.Hunters.findOne({
+    const exotic = await models.Exotics.findOne({
       where: { name }
     })
 
     if (!exotic) return response.status(404).send('Unable to find exotic with that name.')
 
-    await models.Exotics.update({
-      perk: request.body
-    },
-      { where: { name } })
+    await models.Exotics.update({ perk }, { where: { name } })
 
     return response.sendStatus(204)
   } catch (error) {
     return response.status(500).send('Unable to update exotic, please try again later.')
   }
-
 }
 
 const deleteExotic = async (request, response) => {
@@ -108,4 +104,3 @@ const deleteExotic = async (request, response) => {
 module.exports = {
   getAllExotics, getExoticByName, getExoticsByType, saveNewExotic, patchExotic, deleteExotic
 }
-

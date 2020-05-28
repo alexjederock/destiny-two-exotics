@@ -5,7 +5,7 @@ const hunters = (connection, Sequelize, Exotics) => {
     subclass: { type: Sequelize.STRING },
     grenades: { type: Sequelize.STRING },
     tree: { type: Sequelize.STRING },
-    exoticId: { type: Sequelize.INTEGER, references: { model: Exotics, key: 'id' } },
+    exoticName: { type: Sequelize.STRING, references: { model: Exotics, key: 'name' } },
   }, {
     defaultScope: {
       attributes: { exclude: ['deletedAt'] }

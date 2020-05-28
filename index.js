@@ -20,11 +20,11 @@ app.get('/hunters', getAllHunters)
 
 app.get('/hunters/:tag', getHunterByTag)
 
-app.get('/hunters/:subclass', getHuntersBySubclass)
+app.get('/hunters/class/:subclass', getHuntersBySubclass)
 
-app.post('/hunters', saveNewHunter)
+app.post('/hunters', express.json(), saveNewHunter)
 
-app.patch('/hunters/:tag', patchHunter)
+app.patch('/hunters/:tag', express.json(), patchHunter)
 
 app.delete('/hunters/:tag', deleteHunter)
 
@@ -34,11 +34,11 @@ app.get('/exotics/:name', getExoticByName)
 
 app.get('/exotics/:type', getExoticsByType)
 
-app.post('/exotics', saveNewExotic)
+app.post('/exotics', express.json(), saveNewExotic)
 
 app.delete('/exotics/:name', deleteExotic)
 
-app.patch('/exotics/:name', patchExotic)
+app.patch('/exotics/:name', express.json(), patchExotic)
 
 app.get('/documentation', (request, response) => {
   response.render('index')
@@ -51,4 +51,3 @@ app.all('*', (request, response) => {
 app.listen(1221, () => {
   console.log('Listening on port 1221...') // eslint-disable-line no-console
 })
-

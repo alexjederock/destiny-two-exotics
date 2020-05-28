@@ -36,4 +36,3 @@ module.exports = {
     return queryInterface.dropTable('exotics')
   }
 }
-
