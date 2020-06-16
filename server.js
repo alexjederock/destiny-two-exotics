@@ -1,10 +1,11 @@
-const express = require('express')
-const {
+import express from 'express'
+import path from 'path'
+import {
   getAllExotics, getExoticByName, getExoticsByType, saveNewExotic, patchExotic, deleteExotic
-} = require('./controllers/exotics')
-const {
+} from './controllers/exotics'
+import {
   getAllHunters, getHunterByTag, getHuntersBySubclass, saveNewHunter, patchHunter, deleteHunter
-} = require('./controllers/hunters')
+} from './controllers/hunters'
 
 const app = express()
 
@@ -44,9 +45,7 @@ app.get('/documentation', (request, response) => {
   response.render('index')
 })
 
-app.all('*', (request, response) => {
-  response.sendStatus(404)
-})
+app.all('*', (request, response) => response.sendFile(path.resolve(__dirname, 'public', 'index.html')))
 
 app.listen(1221, () => {
   console.log('Listening on port 1221...') // eslint-disable-line no-console

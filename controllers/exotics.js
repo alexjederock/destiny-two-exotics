@@ -1,4 +1,4 @@
-const models = require('../models')
+import models from '../models'
 
 const getAllExotics = async (request, response) => {
   try {

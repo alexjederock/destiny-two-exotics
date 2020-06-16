@@ -1,8 +1,7 @@
-const Sequelize = require('sequelize')
-const allConfigs = require('../configs/sequelize')
-const HuntersModel = require('./hunters')
-const ExoticsModel = require('./exotics')
-
+import Sequelize from 'sequelize'
+import allConfigs from '../configs/sequelize'
+import HuntersModel from './hunters'
+import ExoticsModel from './exotics'
 
 const environment = process.env.NODE_ENV || 'development'
 const config = allConfigs[environment]

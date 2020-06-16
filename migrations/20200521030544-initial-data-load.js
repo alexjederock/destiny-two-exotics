@@ -18,7 +18,7 @@ module.exports = {
     }, {
       name: 'The-Sixth-Coyote',
       type: 'Chest-Armor',
-      perk: 'Double Dodge; Gain a second didge charge.',
+      perk: 'Double Dodge; Gain a second dodge charge.',
       slug: 'the-sixth-coyote'
     }, {
       name: 'Stomp-EE5',
@@ -71,7 +71,7 @@ module.exports = {
       subclass: 'Arcstrider',
       grenades: 'Skipbolt',
       tree: 'Way of the Wind',
-      exoticName: 'Lucky-Pants'
+      exoticName: 'Lucky-Pants',
     },
     {
       tag: 'bungterzzz',
@@ -79,7 +79,7 @@ module.exports = {
       grenades: 'Swarm Grenade',
       tree: 'Way of the Outlaw',
       exoticName: 'Gwisin-Vest',
-    }
+    },
     ])
   },
 
@@ -87,5 +87,5 @@ module.exports = {
     await queryInterface.bulkDelete('hunters')
 
     return queryInterface.bulkDelete('exotics')
-  }
+  },
 }

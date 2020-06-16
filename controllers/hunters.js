@@ -1,4 +1,4 @@
-const models = require('../models')
+import models from '../models'
 
 const getAllHunters = async (request, response) => {
   try {
