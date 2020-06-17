@@ -1,0 +1,18 @@
+body {
+  background-color: purple;
+}
+
+.title {
+  color: purple;
+  font-size: 3em;
+}
+
+.subtitle {
+  font-size: 2em;
+  color:yellow;
+}
+
+.result {
+  font-size: 3em;
+  color: purple;
+}

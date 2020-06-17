@@ -1,0 +1,158 @@
+h1(id='request-data-title') Destiny Hunter API
+div(class='request-data' id='request-data-1')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunters
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns a list of all hunters in Destiny.
+
+div(class='request-data hidden' id='request-data-2')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunter/{tag}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns the hunter with the tag provided in the route.
+
+div(class='request-data hidden' id='request-data-3')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunter/class/{subclass}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns a list of hunters in Destiny with the subclass provided in the route.
+
+div(class='request-data hidden' id='request-data-4')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') POST
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunters
+  div(class='section')
+    div(class='label') Header:
+    div(class='value') Content-Type: application/json
+  div(class='section')
+    div(class='label') Body:
+    div(class='value')  {"tag": "zettlechips", "subclass": "Arcstrider", "grenades": "Skipbolt", "tree": "Way of the Wind", "exoticName": "Young Ahamkaras Spine"}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Creates a new hunter from the data provided in the body.
+
+div(class='request-data hidden' id='request-data-5')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') DELETE
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunters/{tag}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Deletes the hunter associated with the tag provided in the route.
+
+div(class='request-data hidden' id='request-data-6')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') PATCH
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /hunters/{tag}
+  div(class='section')
+    div(class='label') Header:
+    div(class='value') Content-Type: application/json
+  div(class='section')
+    div(class='label') Body:
+    div(class='value') {"subclass": "Gunslinger", "grenades" : "Tripmine Grenade", "tree": "Way of the Sharpshooter", "exoticName": "Wormhusk Crown"}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Updates the data for the hunter with the tag provided in the route.
+
+div(class='request-data hidden' id='request-data-7')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns a list of all hunter exotics in Destiny.
+
+
+div(class='request-data hidden' id='request-data-8')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics/{name}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns the exotic with the name provided in the route.
+
+div(class='request-data hidden' id='request-data-9' )
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') GET
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics/{type}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Returns a list of exotics with the type provided in the route.
+
+div(class='request-data hidden' id='request-data-10')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') POST
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics
+  div(class='section')
+    div(class='label') Header:
+    div(class='value') Content-Type: application/json
+  div(class='section')
+    div(class='label') Body:
+    div(class='value') {"name": "Lucky Pants", "type": "Leg-Armor", "perk": "Illegally Modded Holster"; "Precision hits load a round to stowed Hand Cannons" }
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Creates a new exotic with the data provided in the body.
+
+div(class='request-data hidden' id='request-data-11')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') DELETE
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics/{name}
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Deletes the exotic associated with the name provided in the route.
+
+div(class='request-data hidden' id='request-data-12')
+  div(class='section')
+    div(class='label') Method:
+    div(class='value') PATCH
+  div(class='section')
+    div(class='label') Route:
+    div(class='value') /exotics/{name}
+  div(class='section')
+    div(class='label') Header:
+    div(class='value') Content-Type: text/plain
+  div(class='section')
+    div(class='label') Body:
+    div(class='value')  { “perk”: “NEW PERK” }
+
+  div(class='section')
+    div(class='label') Description:
+    div(class='value') Updates the perk for the exotic with the name provided in the route.
