@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Page from '../components/Page'
 import ResultExotic from '../components/ResultExotic'
 import { retrieveExotics, filterExotics } from '../utils/exotics'
 
@@ -25,9 +26,8 @@ export default () => {
   }, [filteredExoticsList])
 
   return (
-    <div className="page">
-      <div className="title">Results</div>
-      <div className="subtitle">Your Exotic</div>
+    <Page>
+      <div className="result">Results</div>
       {
         filteredExoticsList.map(exotic => (
           <ResultExotic
@@ -37,6 +37,6 @@ export default () => {
           />
         ))
       }
-    </div>
+    </Page>
   )
 }

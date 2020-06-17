@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Page from '../components/Page'
 import Exotic from '../components/Exotic'
 import Search from '../components/Search'
 import NavLink from '../components/NavLink'
@@ -29,7 +30,8 @@ export default () => {
   }, [searchTerm])
 
   return (
-    <div className="page">
+
+    <Page>
       <div className="title">Find an Exotic for your hunter!</div>
       <div className="subtitle">A searchable list of Hunter class exotics.</div>
       <Search term={searchTerm} setter={setSearchTerm} />
@@ -37,7 +39,7 @@ export default () => {
         filteredExoticsList.map(exotic => (<Exotic key={exotic.name} name={exotic.name} />))
       }
       <NavLink />
-    </div>
+    </Page>
 
   )
 }

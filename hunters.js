@@ -64,7 +64,7 @@ const hunters = {
   }, {
     name: 'The-Sixth-Coyote',
     type: 'Chest-Armor',
-    perk: 'Double Dodge; Gain a second didge charge.',
+    perk: 'Double Dodge; Gain a second dodge charge.',
   }, {
     name: 'Stomp-EE5',
     type: 'Leg-Armor',
